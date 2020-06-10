@@ -23,6 +23,8 @@ requirements:
     - pip
   run:
     - python
+    # 'setuptools' is needed to provide 'pkg_resources'
+    - setuptools
 
 test:
   imports:
