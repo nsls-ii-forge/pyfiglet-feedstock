@@ -1,0 +1,40 @@
+{% set name = "pyfiglet" %}
+{% set version = "0.8.post1" %}
+{% set sha256 = "c6c2321755d09267b438ec7b936825a4910fec696292139e664ca8670e103639" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: {{ sha256 }}
+
+build:
+  noarch: python
+  entry_points:
+    - pyfiglet = pyfiglet:main
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  host:
+    - python
+    - pip
+  run:
+    - python
+
+test:
+  imports:
+    - pyfiglet
+    - pyfiglet.fonts
+  commands:
+    - pyfiglet --help
+
+about:
+  home: https://github.com/pwaller/pyfiglet
+  summary: Pure-python FIGlet implementation
+  license_file: LICENSE
+  license: GPL2
+  license_family: GPL2
+  dev_url: https://github.com/pwaller/pyfiglet
